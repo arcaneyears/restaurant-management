@@ -33,16 +33,18 @@ All six pages share the same top bar, sticky navigation and footer.
 - Semantic structure throughout: `header`, `nav`, `main`, `section`, `article`, `aside`,
   `figure`, `figcaption`, `address`, `time`, `dl`, `footer`
 - Three data tables with `caption`, `thead`, `tbody`, `tfoot` and scoped headers
-- Two forms with fieldsets, legends, labels, selects, radios, checkboxes, textareas and
-  native HTML5 validation plus a success message
+- Two forms with fieldsets, legends, labels, selects, radios, checkboxes and textareas,
+  validated entirely by the browser through `required`, `type` and `minlength`
+- Inline error messages driven by the CSS `:user-invalid` pseudo-class, so the forms report
+  problems without a single line of our own JavaScript
 - CSS Grid for the gallery mosaic, the feature cards, the footer and the hours lists
 - Flexbox for the top bar, navigation, split sections, statistics and info cards
 - Positioning: `fixed` back-to-top button, `sticky` navbar, `absolute` overlays, price badges
   and image tags over `relative` parents
 - Hover transitions on cards, images, links and navigation underlines
 - Media queries at 991px (tablet) and 575px (mobile) on top of the Bootstrap grid
-- Bootstrap utilities for spacing, text alignment, flex helpers, buttons, alerts and the
-  accordion component
+- Bootstrap utilities for spacing, text alignment, flex helpers and buttons, plus the
+  collapse and accordion components
 
 ## Structure
 
@@ -57,8 +59,6 @@ restaurant-management/
 ├── README.md
 ├── css/
 │   └── style.css
-├── js/
-│   └── main.js
 ├── images/
 │   └── 12 photographs
 └── vendor/
@@ -68,6 +68,10 @@ restaurant-management/
 ```
 
 Bootstrap 5.3.3 is bundled locally in `vendor/`, so the site works without a CDN.
+
+The project contains no JavaScript of its own. The only script on the pages is the Bootstrap
+bundle, which its collapsible mobile navbar and the FAQ accordion depend on. Everything else,
+including form validation and the error messages, is plain HTML and CSS.
 
 ## Design
 
