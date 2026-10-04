@@ -1126,3 +1126,163 @@ img {
   color: var(--white);
 }
 
+@media (max-width: 991px) {
+  h1 {
+    font-size: 2.4rem;
+  }
+
+  h2 {
+    font-size: 1.9rem;
+  }
+
+  .section {
+    padding: 66px 0;
+  }
+
+  #site-nav {
+    padding: 10px 0;
+  }
+
+  #site-nav .navbar-nav {
+    padding: 14px 0 6px;
+  }
+
+  #site-nav .nav-link {
+    padding: 10px 2px;
+  }
+
+  #site-nav .nav-link::after {
+    left: 2px;
+  }
+
+  #site-nav .nav-link:hover::after,
+  #site-nav .nav-link.active::after {
+    width: 36px;
+  }
+
+  #hero {
+    min-height: 62vh;
+  }
+
+  .hero-content {
+    padding: 80px 0 0;
+  }
+
+  .hero-badge {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    z-index: 2;
+    display: inline-block;
+    margin: 28px 0 80px;
+  }
+
+  .page-head {
+    padding: 84px 0 70px;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 190px;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  .split {
+    gap: 34px;
+  }
+
+  .form-panel {
+    padding: 28px 24px;
+  }
+}
+
+@media (max-width: 575px) {
+  h1 {
+    font-size: 1.95rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .section {
+    padding: 52px 0;
+  }
+
+  .topbar-inner {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+
+  #hero {
+    min-height: auto;
+  }
+
+  .hero-content {
+    padding: 62px 0 0;
+  }
+
+  .hero-badge {
+    margin: 24px 0 62px;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 210px;
+  }
+
+  .wide,
+  .tall {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .stat-box {
+    flex: 1 1 100%;
+  }
+
+  .menu-row {
+    flex-wrap: wrap;
+  }
+
+  .menu-dots {
+    display: none;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+
+  #back-to-top {
+    right: 14px;
+    bottom: 14px;
+  }
+}
