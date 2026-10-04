@@ -99,6 +99,6 @@ Then visit `http://localhost:8000`.
 
 | Member | GitHub | Responsibility |
 | --- | --- | --- |
-| Yersain Taubay | `arcaneyears` | Project setup, Bootstrap bundle, base CSS theme, home page, README |
-| Nursultan Duisenbek | `nursultan-duisenbek` | Image assets, component styles, about, menu and contact pages |
-| Ramazan Serikuly | `Ramazan-SE-2524` | Scripts, form and footer styles, gallery and reservation pages, responsive pass |
+| Yersaiyn Taubay | `arcaneyears` | Project setup, Bootstrap bundle, base CSS theme, home page, README |
+| Nursultan Duisenbekuly | `nursultan-duisenbek` | Image assets, component styles, about, menu and contact pages |
+| Ramazan Sagyngali | `Ramazan-SE-2524` | Form and footer styles, gallery and reservation pages, responsive pass |
