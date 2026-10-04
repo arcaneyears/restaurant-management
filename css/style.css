@@ -880,7 +880,6 @@ img {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 26px 24px;
-  height: 100%;
 }
 
 .info-icon {
