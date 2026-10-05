@@ -16,14 +16,14 @@ Restaurant management. The site works on two levels at once:
 
 ## Pages
 
-| Page | File | What it contains |
-| --- | --- | --- |
-| Home | `index.html` | Hero section, three departments, story teaser, statistics, signature dishes, guest testimonials |
-| About | `about.html` | History timeline, values, management team, weekly shift schedule table |
-| Menu | `menu.html` | Starters, mains, desserts, drinks, catering package comparison table |
-| Gallery | `gallery.html` | Twelve-frame CSS Grid mosaic with hover captions |
-| Reservation | `reservation.html` | Full booking form with validation, availability table, booking policy |
-| Contact | `contact.html` | Contact cards, feedback form, embedded map, FAQ accordion |
+| Page        | File               | What it contains                                                                                |
+| ----------- | ------------------ | ----------------------------------------------------------------------------------------------- |
+| Home        | `index.html`       | Hero section, three departments, story teaser, statistics, signature dishes, guest testimonials |
+| About       | `about.html`       | History timeline, values, management team, weekly shift schedule table                          |
+| Menu        | `menu.html`        | Starters, mains, desserts, drinks, catering package comparison table                            |
+| Gallery     | `gallery.html`     | Twelve-frame CSS Grid mosaic with hover captions                                                |
+| Reservation | `reservation.html` | Full booking form with validation, availability table, booking policy                           |
+| Contact     | `contact.html`     | Contact cards, feedback form, embedded map, FAQ accordion                                       |
 
 All six pages share the same top bar, sticky navigation and footer.
 
@@ -75,13 +75,13 @@ including form validation and the error messages, is plain HTML and CSS.
 
 ## Design
 
-| Role | Value |
-| --- | --- |
-| Ink | `#1b1917` |
-| Cream | `#faf5ed` |
-| Sand | `#f1e7d7` |
+| Role    | Value     |
+| ------- | --------- |
+| Ink     | `#1b1917` |
+| Cream   | `#faf5ed` |
+| Sand    | `#f1e7d7` |
 | Saffron | `#c0701a` |
-| Sage | `#4a6151` |
+| Sage    | `#4a6151` |
 
 Headings use Playfair Display, body text uses Inter, both with system fallbacks.
 
@@ -97,8 +97,8 @@ Then visit `http://localhost:8000`.
 
 ## Team
 
-| Member | GitHub | Responsibility |
-| --- | --- | --- |
-| Yersaiyn Taubay | `arcaneyears` | Project setup, Bootstrap bundle, base CSS theme, home page, README |
-| Nursultan Duisenbekuly | `nursultan-duisenbek` | Image assets, component styles, about, menu and contact pages |
-| Ramazan Sagyngali | `Ramazan-SE-2524` | Form and footer styles, gallery and reservation pages, responsive pass |
+| Member                 | GitHub                | Responsibility                                                         |
+| ---------------------- | --------------------- | ---------------------------------------------------------------------- |
+| Yersaiyn Taubay        | `arcaneyears`         | Project setup, Bootstrap bundle, base CSS theme, home page, README     |
+| Nursultan Duisenbekuly | `nursultan-duisenbek` | Image assets, component styles, about, menu and contact pages          |
+| Ramazan Sagyngali      | `Ramazan-SE-2524`     | Form and footer styles, gallery and reservation pages, responsive pass |
