@@ -1367,3 +1367,135 @@ body.theme-dark .lightbox {
   opacity: 1;
   visibility: visible;
 }
+
+/* Interactive menu */
+.menu-toolbar {
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+#category-filters .btn.active,
+.gallery-filter .btn.active {
+  background-color: var(--ink);
+  color: var(--white);
+  border-color: var(--ink);
+}
+
+.dish-count {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.dish-tile {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.dish-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.dish-tile.is-favourite {
+  border-color: var(--saffron);
+}
+
+.dish-tile-head,
+.dish-tile-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.dish-tile-foot {
+  margin-top: auto;
+  align-items: center;
+}
+
+.dish-tile .menu-name {
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.fav-btn {
+  border: none;
+  background: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--saffron);
+  cursor: pointer;
+}
+
+.menu-empty,
+.order-empty {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.order-panel {
+  position: sticky;
+  top: 96px;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+
+.order-badge {
+  display: inline-block;
+  min-width: 28px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background-color: var(--saffron);
+  color: var(--white);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.order-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.order-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 0.92rem;
+}
+
+.remove-btn {
+  border: none;
+  background: none;
+  color: #b3261e;
+  font-size: 1.1rem;
+  margin-left: 6px;
+  cursor: pointer;
+}
+
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 991px) {
+  .order-panel {
+    position: static;
+  }
+}
