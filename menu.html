@@ -60,176 +60,46 @@
 
       <section class="section section-cream">
         <div class="container">
-          <nav class="mb-5 text-center" aria-label="Menu sections">
-            <ul class="nav justify-content-center gap-2">
-              <li class="nav-item"><a class="btn btn-outline-ink btn-sm" href="#starters">Starters</a></li>
-              <li class="nav-item"><a class="btn btn-outline-ink btn-sm" href="#mains">Main courses</a></li>
-              <li class="nav-item"><a class="btn btn-outline-ink btn-sm" href="#desserts">Desserts</a></li>
-              <li class="nav-item"><a class="btn btn-outline-ink btn-sm" href="#drinks">Drinks</a></li>
-              <li class="nav-item"><a class="btn btn-outline-ink btn-sm" href="#packages">Packages</a></li>
-            </ul>
-          </nav>
+          <div class="menu-toolbar mb-4">
+            <div class="row g-3 align-items-end">
+              <div class="col-lg-5">
+                <label class="form-label" for="menu-search">Search the card</label>
+                <input class="form-control" type="search" id="menu-search" placeholder="Try &ldquo;lamb&rdquo; or &ldquo;saffron&rdquo; (Esc clears)" autocomplete="off" />
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <label class="form-label" for="menu-sort">Sort by</label>
+                <select class="form-select" id="menu-sort">
+                  <option value="default">Card order</option>
+                  <option value="price-asc">Price: low to high</option>
+                  <option value="price-desc">Price: high to low</option>
+                </select>
+              </div>
+              <div class="col-sm-6 col-lg-4 text-lg-end">
+                <span class="dish-count" id="dish-count" aria-live="polite"></span>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3" id="category-filters" role="group" aria-label="Filter by category"></div>
+          </div>
 
-          <div class="row g-4 gy-5">
-            <div class="col-lg-6" id="starters">
-              <span class="eyebrow">Starters</span>
-              <h2>To begin</h2>
-              <hr class="divider" />
-              <ul class="menu-list">
-                <li class="menu-row">
-                  <div>
-                    <span class="menu-name">Charred aubergine dip</span>
-                    <span class="menu-desc">Smoked aubergine, walnut, pomegranate, warm flatbread</span>
-                  </div>
-                  <span class="menu-dots"></span>
-                  <span class="menu-cost">2 400 &#8376;</span>
-                </li>
-                <li class="menu-row">
-                  <div>
-                    <span class="menu-name">Steppe beef tartare</span>
-                    <span class="menu-desc">Hand-cut beef, cured yolk, mustard seeds, rye crisp</span>
-                  </div>
-                  <span class="menu-dots"></span>
-                  <span class="menu-cost">3 900 &#8376;</span>
-                </li>
-                <li class="menu-row">
-                  <div>
-                    <span class="menu-name">Market greens<span class="tag-pill">Vegan</span></span>
-                    <span class="menu-desc">Seasonal leaves, toasted seeds, herb tahini</span>
-                  </div>
-                  <span class="menu-dots"></span>
-                  <span class="menu-cost">2 100 &#8376;</span>
-                </li>
-                <li class="menu-row">
-                  <div>
-                    <span class="menu-name">Hot lamb broth</span>
-                    <span class="menu-desc">Slow lamb stock, barley, root vegetables, dill oil</span>
-                  </div>
-                  <span class="menu-dots"></span>
-                  <span class="menu-cost">2 600 &#8376;</span>
-                </li>
-              </ul>
+          <div class="row g-4">
+            <div class="col-lg-8">
+              <div class="row g-4" id="dish-grid"></div>
+              <p class="menu-empty" id="menu-empty" hidden>No dishes match your search. Try another word or category.</p>
             </div>
 
-            <div class="col-lg-6" id="mains">
-              <span class="eyebrow">Main courses</span>
-              <h2>From the fire</h2>
-              <hr class="divider" />
-              <ul class="menu-list">
-                <li class="menu-row">
-                  <div>
-                    <span class="menu-name">Saffron lamb rack<span class="tag-pill">Signature</span></span>
-                    <span class="menu-desc">Charcoal rack, saffron jus, smoked aubergine, apricot</span>
-                  </div>
-                  <span class="menu-dots"></span>
-                  <span class="menu-cost">6 200 &#8376;</span>
-                </li>
-                <li class="menu-row">
-                  <div>
-                    <span class="menu-name">Grilled river trout</span>
-                    <span class="menu-desc">Whole trout, brown butter, capers, new potatoes</span>
-                  </div>
-                  <span class="menu-dots"></span>
-                  <span class="menu-cost">5 400 &#8376;</span>
-                </li>
-                <li class="menu-row">
-                  <div>
-                    <span class="menu-name">Garden harvest bowl<span class="tag-pill">Vegan</span></span>
-                    <span class="menu-desc">Charred corn, roast squash, freekeh, herb dressing</span>
-                  </div>
-                  <span class="menu-dots"></span>
-                  <span class="menu-cost">3 400 &#8376;</span>
-                </li>
-                <li class="menu-row">
-                  <div>
-                    <span class="menu-name">Hand-rolled beshbarmak</span>
-                    <span class="menu-desc">Wide noodles, braised beef, onion broth, black pepper</span>
-                  </div>
-                  <span class="menu-dots"></span>
-                  <span class="menu-cost">4 800 &#8376;</span>
-                </li>
-                <li class="menu-row">
-                  <div>
-                    <span class="menu-name">Clay-oven chicken</span>
-                    <span class="menu-desc">Half chicken, sumac onions, burnt lemon, flatbread</span>
-                  </div>
-                  <span class="menu-dots"></span>
-                  <span class="menu-cost">4 300 &#8376;</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-lg-6" id="desserts">
-              <span class="eyebrow">Desserts</span>
-              <h2>Sweet finish</h2>
-              <hr class="divider" />
-              <ul class="menu-list">
-                <li class="menu-row">
-                  <div>
-                    <span class="menu-name">Honey saffron tart</span>
-                    <span class="menu-desc">Steppe honey custard, saffron crumb, sour cream ice</span>
-                  </div>
-                  <span class="menu-dots"></span>
-                  <span class="menu-cost">2 900 &#8376;</span>
-                </li>
-                <li class="menu-row">
-                  <div>
-                    <span class="menu-name">Apricot kissel</span>
-                    <span class="menu-desc">Dried apricot, toasted oats, cold cream</span>
-                  </div>
-                  <span class="menu-dots"></span>
-                  <span class="menu-cost">2 200 &#8376;</span>
-                </li>
-                <li class="menu-row">
-                  <div>
-                    <span class="menu-name">Dark chocolate pot</span>
-                    <span class="menu-desc">Bitter chocolate, sea salt, olive oil, rye crumb</span>
-                  </div>
-                  <span class="menu-dots"></span>
-                  <span class="menu-cost">2 500 &#8376;</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-lg-6" id="drinks">
-              <span class="eyebrow">Drinks</span>
-              <h2>Bar &amp; brew</h2>
-              <hr class="divider" />
-              <ul class="menu-list">
-                <li class="menu-row">
-                  <div>
-                    <span class="menu-name">Filter coffee</span>
-                    <span class="menu-desc">Single origin, roasted in Almaty, changes monthly</span>
-                  </div>
-                  <span class="menu-dots"></span>
-                  <span class="menu-cost">1 300 &#8376;</span>
-                </li>
-                <li class="menu-row">
-                  <div>
-                    <span class="menu-name">Mountain herb tea</span>
-                    <span class="menu-desc">Thyme, mint and rosehip, served by the pot</span>
-                  </div>
-                  <span class="menu-dots"></span>
-                  <span class="menu-cost">1 600 &#8376;</span>
-                </li>
-                <li class="menu-row">
-                  <div>
-                    <span class="menu-name">Saffron lemonade<span class="tag-pill">House</span></span>
-                    <span class="menu-desc">Saffron syrup, lemon, soda, cold press apple</span>
-                  </div>
-                  <span class="menu-dots"></span>
-                  <span class="menu-cost">1 800 &#8376;</span>
-                </li>
-                <li class="menu-row">
-                  <div>
-                    <span class="menu-name">Wine by the glass</span>
-                    <span class="menu-desc">Two reds, two whites, rotated every season</span>
-                  </div>
-                  <span class="menu-dots"></span>
-                  <span class="menu-cost">2 700 &#8376;</span>
-                </li>
-              </ul>
-            </div>
+            <aside class="col-lg-4">
+              <div class="order-panel" id="order-panel">
+                <h2 class="h4">My order <span class="order-badge" id="order-count">0</span></h2>
+                <p class="small mb-3">Plan your table before you arrive &mdash; show this list to your waiter.</p>
+                <ul class="order-list" id="order-list"></ul>
+                <p class="order-empty" id="order-empty">Nothing added yet. Press &ldquo;Add to order&rdquo; on any dish.</p>
+                <div class="order-total">
+                  <span>Total</span>
+                  <strong id="order-total">0 &#8376;</strong>
+                </div>
+                <button type="button" class="btn btn-outline-ink btn-sm w-100 mt-3" id="order-clear">Clear order</button>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
@@ -433,6 +303,10 @@
 
     <a id="back-to-top" href="#page-top" aria-label="Back to top">&uarr;</a>
 
+    <script src="vendor/jquery/jquery-3.7.1.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/menu.js"></script>
   </body>
 </html>
