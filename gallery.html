@@ -65,71 +65,19 @@
             <h2>A week in twelve frames</h2>
             <hr class="divider divider-center" />
             <p class="lead-text mx-auto">
-              Hover any photo on a desktop screen to read what is happening in it.
+              Filter the photos by topic and click any frame to open it full size. Use the arrow keys to browse.
             </p>
           </div>
 
-          <div class="gallery-grid">
-            <figure class="gallery-item wide tall">
-              <img src="images/hero.jpg" alt="Guests dining at a long table in the main hall" />
-              <figcaption>Friday service in the main hall</figcaption>
-            </figure>
-
-            <figure class="gallery-item">
-              <img src="images/interior.jpg" alt="Wooden tables set with linen and glassware" />
-              <figcaption>Tables set before opening</figcaption>
-            </figure>
-
-            <figure class="gallery-item">
-              <img src="images/kitchen.jpg" alt="Cooks working at the open kitchen counter" />
-              <figcaption>The open kitchen counter</figcaption>
-            </figure>
-
-            <figure class="gallery-item wide">
-              <img src="images/dish-1.jpg" alt="Grilled lamb rack plated with vegetables" />
-              <figcaption>Saffron lamb rack, ready to leave the pass</figcaption>
-            </figure>
-
-            <figure class="gallery-item tall">
-              <img src="images/dish-2.jpg" alt="Seasonal salad bowl with fresh herbs" />
-              <figcaption>Garden harvest bowl, built to order</figcaption>
-            </figure>
-
-            <figure class="gallery-item">
-              <img src="images/dessert.jpg" alt="Dessert plate with berries and cream" />
-              <figcaption>Honey saffron tart</figcaption>
-            </figure>
-
-            <figure class="gallery-item">
-              <img src="images/cafe.jpg" alt="Private dining corner prepared for an event" />
-              <figcaption>Private corner for small events</figcaption>
-            </figure>
-
-            <figure class="gallery-item wide">
-              <img src="images/coffee.jpg" alt="Coffee being poured at the bar" />
-              <figcaption>Morning filter at the bar station</figcaption>
-            </figure>
-
-            <figure class="gallery-item tall">
-              <img src="images/chef.jpg" alt="Head chef checking a dish before service" />
-              <figcaption>The 16:30 tasting, every single day</figcaption>
-            </figure>
-
-            <figure class="gallery-item">
-              <img src="images/team.jpg" alt="Staff briefing before the evening shift" />
-              <figcaption>Pre-shift briefing at 15:00</figcaption>
-            </figure>
-
-            <figure class="gallery-item">
-              <img src="images/dish-3.jpg" alt="Flatbread baked in the clay oven" />
-              <figcaption>Flatbread straight from the clay oven</figcaption>
-            </figure>
-
-            <figure class="gallery-item wide">
-              <img src="images/dish-4.jpg" alt="Shared plates arranged on a table" />
-              <figcaption>Family feast package, served to share</figcaption>
-            </figure>
+          <div class="gallery-filter d-flex flex-wrap justify-content-center gap-2 mb-4" role="group" aria-label="Filter photos">
+            <button type="button" class="btn btn-outline-ink btn-sm active" data-filter="all">All photos</button>
+            <button type="button" class="btn btn-outline-ink btn-sm" data-filter="food">Food &amp; drinks</button>
+            <button type="button" class="btn btn-outline-ink btn-sm" data-filter="hall">Dining hall</button>
+            <button type="button" class="btn btn-outline-ink btn-sm" data-filter="team">Our team</button>
           </div>
+
+          <!-- figures are created by js/gallery.js from the galleryPhotos array -->
+          <div class="gallery-grid" id="gallery-grid"></div>
         </div>
       </section>
 
@@ -242,8 +190,22 @@
       </div>
     </footer>
 
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true">
+      <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+      <button type="button" class="lightbox-prev" aria-label="Previous photo">&lsaquo;</button>
+      <figure class="lightbox-frame">
+        <img src="images/hero.jpg" alt="" />
+        <figcaption class="lightbox-caption"></figcaption>
+      </figure>
+      <button type="button" class="lightbox-next" aria-label="Next photo">&rsaquo;</button>
+    </div>
+
     <a id="back-to-top" href="#page-top" aria-label="Back to top">&uarr;</a>
 
+    <script src="vendor/jquery/jquery-3.7.1.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/gallery.js"></script>
   </body>
 </html>
