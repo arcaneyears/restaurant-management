@@ -131,7 +131,7 @@
                 <span class="eyebrow">Write to us</span>
                 <h2 class="mb-4">Feedback and questions</h2>
 
-                <form class="row g-3">
+                <form class="row g-3" id="contact-form">
                   <fieldset class="col-12">
                     <legend>Your message</legend>
                     <div class="row g-3">
@@ -207,6 +207,9 @@
                     <button class="btn btn-saffron" type="submit">Send message</button>
                     <button class="btn btn-outline-ink" type="reset">Clear</button>
                   </div>
+                  <div class="col-12">
+                    <div class="alert alert-success form-success" id="contact-success" role="status" style="display: none"></div>
+                  </div>
                 </form>
               </div>
             </div>
@@ -244,6 +247,12 @@
                 <h2>Frequent questions</h2>
                 <hr class="divider divider-center" />
               </div>
+
+              <div class="mb-4">
+                <label class="form-label" for="faq-search">Search the questions</label>
+                <input class="form-control" type="search" id="faq-search" placeholder="e.g. allergies, events, hiring" autocomplete="off" />
+              </div>
+              <p class="menu-empty" id="faq-empty" style="display: none">No question matches &mdash; write to us using the form above.</p>
 
               <div class="accordion" id="faqList">
                 <div class="accordion-item">
@@ -389,6 +398,9 @@
 
     <a id="back-to-top" href="#page-top" aria-label="Back to top">&uarr;</a>
 
+    <script src="vendor/jquery/jquery-3.7.1.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/contact.js"></script>
   </body>
 </html>
