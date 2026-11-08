@@ -1494,6 +1494,95 @@ body.theme-dark .lightbox {
   font-size: 1.1rem;
 }
 
+/* Gallery lightbox */
+.gallery-item {
+  cursor: zoom-in;
+}
+
+.gallery-item:focus-visible {
+  outline: 3px solid var(--saffron);
+  outline-offset: 3px;
+}
+
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background-color: rgba(15, 13, 11, 0.92);
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.lightbox[style*="block"] {
+  display: flex !important;
+}
+
+.lightbox-frame {
+  margin: 0;
+  max-width: 900px;
+  text-align: center;
+}
+
+.lightbox-frame img {
+  max-width: 100%;
+  max-height: 75vh;
+  border-radius: var(--radius);
+}
+
+.lightbox-caption {
+  color: #f5ede0;
+  margin-top: 12px;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lightbox-close {
+  top: 20px;
+  right: 20px;
+}
+
+.lightbox-prev {
+  left: 16px;
+  top: 50%;
+}
+
+.lightbox-next {
+  right: 16px;
+  top: 50%;
+}
+
+/* Form feedback */
+.form-control.is-invalid ~ .invalid-feedback,
+.form-select.is-invalid ~ .invalid-feedback,
+.form-check-input.is-invalid ~ .invalid-feedback {
+  display: block;
+}
+
+.form-success {
+  border-radius: var(--radius);
+}
+
+.char-counter {
+  display: block;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
 @media (max-width: 991px) {
   .order-panel {
     position: static;
