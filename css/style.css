@@ -1311,3 +1311,59 @@ img {
 textarea.form-control {
   resize: none;
 }
+
+/* =========================================================
+   Endterm — styles for the JavaScript / jQuery features
+   ========================================================= */
+
+/* Theme switcher: dark mode inverts the palette, photos stay natural */
+body.theme-dark {
+  filter: invert(0.92) hue-rotate(180deg);
+  background-color: #fff;
+}
+
+body.theme-dark img,
+body.theme-dark iframe,
+body.theme-dark .hero,
+body.theme-dark .page-head,
+body.theme-dark .lightbox {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.btn-theme {
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background-color: var(--white);
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.btn-theme:hover {
+  background-color: var(--saffron);
+  color: var(--white);
+}
+
+/* Open / closed badge in the top bar */
+.status-badge {
+  font-weight: 600;
+}
+
+.status-badge.is-open {
+  color: #7fd39a;
+}
+
+.status-badge.is-closed {
+  color: #f29b8f;
+}
+
+/* Back-to-top only appears after scrolling */
+#back-to-top {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
+}
+
+#back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
