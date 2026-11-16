@@ -22,10 +22,11 @@ Restaurant management. The site works on two levels at once:
 | About       | `about.html`       | History timeline, values, management team, weekly shift schedule table                          |
 | Menu        | `menu.html`        | Starters, mains, desserts, drinks, catering package comparison table                            |
 | Gallery     | `gallery.html`     | Twelve-frame CSS Grid mosaic with hover captions                                                |
-| Reservation | `reservation.html` | Full booking form with validation, availability table, booking policy                           |
+| Recipes     | `recipes.html`     | Live recipe search from TheMealDB, categories, pagination, details modal, saved recipes (final)  |
+| Reservation | `reservation.html` | Full booking form with validation, My bookings (CRUD), statistics and chart, availability table  |
 | Contact     | `contact.html`     | Contact cards, feedback form, embedded map, FAQ accordion                                       |
 
-All six pages share the same top bar, sticky navigation and footer.
+All seven pages share the same top bar, sticky navigation and footer.
 
 ## Features
 
@@ -44,6 +45,84 @@ All six pages share the same top bar, sticky navigation and footer.
 - Bootstrap utilities for spacing, text alignment, flex helpers and buttons, plus the
   collapse and accordion components
 
+
+
+## Final project — client-side web application
+
+The final stage keeps every midterm and endterm feature and turns the site into a small
+client-side application. New scripts: `js/storage.js`, `js/api.js`, `js/models.js`,
+`js/weather.js`, `js/recipes.js`, `js/bookings.js`; new page: `recipes.html`.
+
+- **Live site:** https://arcaneyears.github.io/restaurant-management/
+- **Repository:** https://github.com/arcaneyears/restaurant-management
+
+### New features
+
+| # | Feature | Where | Requirement covered |
+| - | ------- | ----- | ------------------- |
+| 1 | **Recipe ideas** — search by name, category filter, A–Z / Z–A sort, pagination (8 per page), details modal with ingredients and steps, saved recipes | `recipes.html`, `js/recipes.js` | API, localStorage, advanced search/sort/pagination, modal |
+| 2 | **Terrace today** — live weather for Almaty with advice for guests and a 3-day forecast, cached for 15 minutes | `index.html`, `js/weather.js` | API, localStorage |
+| 3 | **My bookings** — every booking request is saved; edit it in the form, cancel it, delete all, search, filter (upcoming / past) and sort | `reservation.html`, `js/bookings.js`, `js/reservation.js` | CRUD, OOP, localStorage |
+| 4 | **Booking statistics** — totals, average party size, next visit and a bar chart of guests per time slot drawn with the Canvas API | `reservation.html`, `js/bookings.js` | Chart / statistics panel |
+| 5 | **Saved order** — "My order" on the menu page is an `Order` object, survives a reload, with + / − quantity buttons | `menu.html`, `js/menu.js` | OOP, localStorage |
+| 6 | **Text size controls** (A− / A / A+) on every page, saved together with the dark theme | top bar, `js/main.js` | Accessibility preference saved |
+
+### APIs used (both free, no API key, nothing secret in the code)
+
+| API | Endpoints | Used for |
+| --- | --------- | -------- |
+| [TheMealDB](https://www.themealdb.com/api.php) | `search.php?s=`, `filter.php?c=`, `lookup.php?i=`, `categories.php` | Recipe search, categories, recipe details |
+| [Open-Meteo](https://open-meteo.com/) | `forecast?latitude=&longitude=&current=&daily=` | Current weather and 3-day forecast for Almaty |
+
+All requests go through `ApiClient.getJSON()` (`js/api.js`): `fetch` with `async/await`, an 8-second
+timeout (`AbortController`), an offline check and readable error messages. Every API view has
+**loading**, **success**, **empty** and **error (with Retry)** states.
+
+### Object-oriented JavaScript
+
+| Class | File | Responsibility |
+| ----- | ---- | -------------- |
+| `StorageService` | `js/storage.js` | Safe JSON read/write in localStorage; invalid or missing data falls back to a default |
+| `ApiClient`, `ApiError` | `js/api.js` | Shared fetch logic and error type |
+| `MealApi`, `WeatherApi` (extend `ApiClient`) | `js/api.js` | One method per endpoint, return ready objects |
+| `Recipe` | `js/models.js` | Turns raw API JSON into an object with `ingredients`, `getSteps()`, `toSaved()` |
+| `Order` | `js/models.js` | Menu order: `add`, `decrease`, `remove`, `clear`, `count`, `total`, saved automatically |
+| `Booking`, `BookingBook` | `js/models.js` | One booking / the list of bookings: `add`, `find`, `update`, `remove`, `clear`, `list`, `getStats` |
+
+### What is stored in localStorage (keys start with `saffron:`)
+
+| Key | Value (JSON) | Update / clear |
+| --- | ------------ | -------------- |
+| `saffron:bookings` | array of booking objects | Edit, Cancel booking, Delete all bookings |
+| `saffron:order` | array of `{ id, qty }` | + / −, ×, Clear order |
+| `saffron:favourites` | array of dish ids | ♡ button on the menu |
+| `saffron:saved-recipes` | array of `{ id, name, photo, category }` | Save / × / Clear saved |
+| `saffron:font-step` | 0, 1 or 2 | A− / A / A+ |
+| `saffron:weather` | `{ savedAt, data }` | Refresh button, expires after 15 min |
+| `saffron-theme` | `"light"` / `"dark"` | ☾ Dark button (endterm) |
+
+Broken JSON or a value of the wrong shape is removed and replaced by a safe default, so the page
+never crashes on bad stored data.
+
+### How to run and test
+
+1. Open the live site, or clone the repository and open `index.html` (or run `python -m http.server`
+   in the folder and open `http://localhost:8000`). No build step and no installation needed.
+2. **Home:** the "Terrace today" box loads live weather. Turn off Wi-Fi and press Refresh to see the error state.
+3. **Recipes:** the page opens with the "Lamb" category. Change the category, search "chicken", search
+   "zzz" (empty state), type one letter (validation), switch pages, open a recipe, save two recipes and reload.
+4. **Menu:** add dishes, reload — the order is still there; use + / − / ×.
+5. **Reservation:** send two bookings, then Edit one (the form fills in, the button says "Save changes"),
+   Cancel booking (press twice), filter and search the list; watch the statistics and the chart change.
+6. **Any page:** A− / A / A+ and ☾ Dark, then reload.
+
+### Who did what (final stage)
+
+| Member | Final-stage part |
+| ------ | ---------------- |
+| Yersaiyn Taubay (arcaneyears) | `StorageService`, `ApiClient` / `MealApi` / `WeatherApi`, weather widget, text-size controls, README |
+| Nursultan Duisenbekuly (nursultan-duisenbek) | `Recipe` and `Order` classes, Recipes page (search, filter, sort, pagination, modal, saved recipes), saved menu order |
+| Ramazan Sagyngali (Ramazan-SE-2524) | `Booking` and `BookingBook` classes, My bookings CRUD, statistics panel and canvas chart, form integration, styles |
 
 ## Endterm — JavaScript & jQuery features
 
@@ -93,14 +172,29 @@ restaurant-management/
 ├── about.html
 ├── menu.html
 ├── gallery.html
+├── recipes.html          (final)
 ├── reservation.html
 ├── contact.html
 ├── README.md
 ├── css/
 │   └── style.css
+├── js/
+│   ├── storage.js        (final) StorageService
+│   ├── api.js            (final) ApiClient, MealApi, WeatherApi
+│   ├── models.js         (final) Recipe, Order, Booking, BookingBook
+│   ├── weather.js        (final) home weather widget
+│   ├── recipes.js        (final) recipes page
+│   ├── bookings.js       (final) My bookings + statistics
+│   ├── data.js           menu and gallery arrays
+│   ├── main.js           theme, text size, open status, back-to-top
+│   ├── menu.js           interactive menu and saved order
+│   ├── gallery.js        jQuery gallery and lightbox
+│   ├── reservation.js    booking form validation
+│   └── contact.js        jQuery contact form and FAQ search
 ├── images/
 │   └── 12 photographs
 └── vendor/
+    ├── jquery/jquery-3.7.1.min.js
     └── bootstrap/
         ├── css/bootstrap.min.css
         └── js/bootstrap.bundle.min.js
@@ -108,9 +202,7 @@ restaurant-management/
 
 Bootstrap 5.3.3 is bundled locally in `vendor/`, so the site works without a CDN.
 
-The project contains no JavaScript of its own. The only script on the pages is the Bootstrap
-bundle, which its collapsible mobile navbar and the FAQ accordion depend on. Everything else,
-including form validation and the error messages, is plain HTML and CSS.
+The midterm version had no JavaScript of its own; JavaScript and jQuery were added at the endterm stage and extended in the final stage (see the sections above).
 
 ## Design
 
