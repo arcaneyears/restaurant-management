@@ -1578,3 +1578,351 @@ body.theme-dark .lightbox {
     position: static;
   }
 }
+
+.font-controls {
+  display: inline-flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.font-btn {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: transparent;
+  color: inherit;
+  border-radius: 6px;
+  padding: 0 8px;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  cursor: pointer;
+}
+
+.font-btn[aria-pressed="true"] {
+  background-color: var(--saffron);
+  border-color: var(--saffron);
+  color: #fff;
+}
+
+.font-btn:focus-visible,
+.page-btn:focus-visible,
+.qty-btn:focus-visible {
+  outline: 3px solid var(--saffron);
+  outline-offset: 2px;
+}
+
+.order-qty {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.qty-btn {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background-color: var(--white);
+  line-height: 1;
+  cursor: pointer;
+}
+
+.order-sum {
+  min-width: 70px;
+  text-align: right;
+}
+
+.weather-band {
+  background-color: var(--sand);
+  padding: 28px 0;
+}
+
+.weather-card {
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+
+.weather-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.weather-box {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px 28px;
+  min-height: 60px;
+}
+
+.weather-box[data-state="loading"],
+.weather-box[data-state="error"],
+.weather-box[data-state="empty"] {
+  display: block;
+  color: var(--muted);
+}
+
+.weather-now {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.weather-icon {
+  font-size: 2.4rem;
+}
+
+.weather-temp {
+  display: block;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.weather-text,
+.weather-updated {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.weather-advice {
+  margin: 0;
+  font-weight: 500;
+}
+
+.weather-days {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.weather-days li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 0.85rem;
+}
+
+.weather-updated {
+  grid-column: 1 / -1;
+}
+
+.recipe-toolbar {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 14px;
+  align-items: end;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+
+.recipe-search-field .invalid-feedback {
+  width: 100%;
+}
+
+.recipe-status {
+  margin: 18px 0;
+  min-height: 1.5em;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.recipe-status[data-state="error"] {
+  color: #b3261e;
+}
+
+.recipe-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.recipe-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.recipe-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px;
+  flex: 1;
+}
+
+.recipe-card h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.recipe-meta {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.recipe-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.recipe-actions .btn {
+  padding: 5px 12px;
+  font-size: 0.82rem;
+}
+
+.recipe-pages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 26px;
+}
+
+.page-btn {
+  min-width: 38px;
+  height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background-color: var(--white);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.page-btn.active {
+  background-color: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+.saved-panel {
+  position: sticky;
+  top: 96px;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.saved-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.saved-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--line);
+}
+
+.saved-item img {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.saved-open {
+  flex: 1;
+  border: none;
+  background: none;
+  text-align: left;
+  font-size: 0.9rem;
+  padding: 0;
+  cursor: pointer;
+}
+
+.saved-open:hover {
+  color: var(--saffron);
+}
+
+.saved-empty {
+  color: var(--muted);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.api-credit {
+  margin-top: 14px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.recipe-modal-img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+}
+
+#recipe-modal h3 {
+  font-size: 1.1rem;
+  margin-top: 16px;
+}
+
+.ingredient-list {
+  columns: 2;
+  padding-left: 18px;
+}
+
+.step-list li {
+  margin-bottom: 8px;
+}
+
+@media (max-width: 991px) {
+  .saved-panel {
+    position: static;
+  }
+}
+
+@media (max-width: 767px) {
+  .recipe-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .weather-box {
+    grid-template-columns: 1fr;
+  }
+
+  .weather-days {
+    flex-wrap: wrap;
+  }
+
+  .font-controls {
+    margin-left: 0;
+  }
+
+  .ingredient-list {
+    columns: 1;
+  }
+}
