@@ -1820,7 +1820,8 @@ body.theme-dark .lightbox {
   color: #fff;
 }
 
-.saved-panel {
+.saved-panel,
+.stats-panel {
   position: sticky;
   top: 96px;
   background-color: var(--white);
@@ -1899,14 +1900,130 @@ body.theme-dark .lightbox {
   margin-bottom: 8px;
 }
 
+.edit-banner {
+  background-color: var(--sand);
+  border: 1px solid var(--saffron);
+  border-radius: var(--radius);
+}
+
+#reservation-form.is-editing {
+  outline: 2px dashed var(--saffron);
+  outline-offset: 10px;
+  border-radius: 4px;
+}
+
+.booking-toolbar {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.booking-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.booking-card {
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--saffron);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.booking-card.is-past {
+  border-left-color: var(--line);
+  opacity: 0.75;
+}
+
+.booking-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.booking-card h3 {
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.booking-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background-color: var(--sand);
+}
+
+.booking-when {
+  font-weight: 600;
+  margin: 8px 0 2px;
+}
+
+.booking-details,
+.booking-notes {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 0 0 4px;
+}
+
+.booking-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.stats-grid div {
+  background-color: var(--cream);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.stats-grid dt {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.stats-grid dd {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.stats-next {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.slot-chart {
+  display: block;
+  width: 100%;
+  height: 180px;
+}
+
 @media (max-width: 991px) {
-  .saved-panel {
+  .saved-panel,
+  .stats-panel {
     position: static;
   }
 }
 
 @media (max-width: 767px) {
-  .recipe-toolbar {
+  .recipe-toolbar,
+  .booking-toolbar {
     grid-template-columns: 1fr;
   }
 
