@@ -34,6 +34,7 @@
               <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
               <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
               <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+              <li class="nav-item"><a class="nav-link" href="recipes.html">Recipes</a></li>
               <li class="nav-item"><a class="nav-link active" href="reservation.html">Reservation</a></li>
               <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
               <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
@@ -65,6 +66,11 @@
               <div class="form-panel">
                 <span class="eyebrow">Booking request</span>
                 <h2 class="mb-4">Tell us about your visit</h2>
+
+                <div class="alert edit-banner" id="edit-banner" role="status" hidden>
+                  Editing booking: <strong id="edit-banner-name"></strong>
+                  <button type="button" class="btn btn-sm btn-outline-ink ms-2" id="edit-cancel">Stop editing</button>
+                </div>
 
                 <form class="row g-3" id="reservation-form">
                   <fieldset class="col-12">
@@ -245,6 +251,63 @@
         </div>
       </section>
 
+      <section class="section section-sand" id="my-bookings">
+        <div class="container">
+          <div class="row align-items-end g-3 mb-4">
+            <div class="col-lg-7">
+              <span class="eyebrow">Saved on this device</span>
+              <h2>My bookings</h2>
+              <hr class="divider" />
+              <p class="mb-0">Every request you send is kept here. Edit a booking to change the time or guests, or cancel it.</p>
+            </div>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-lg-8">
+              <div class="booking-toolbar">
+                <div>
+                  <label class="form-label" for="booking-search">Search</label>
+                  <input class="form-control" type="search" id="booking-search" placeholder="Name or hall" autocomplete="off" />
+                </div>
+                <div>
+                  <label class="form-label" for="booking-filter">Show</label>
+                  <select class="form-select" id="booking-filter">
+                    <option value="all">All bookings</option>
+                    <option value="upcoming">Upcoming</option>
+                    <option value="past">Past</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="form-label" for="booking-sort">Sort</label>
+                  <select class="form-select" id="booking-sort">
+                    <option value="soonest">Soonest first</option>
+                    <option value="newest">Latest date first</option>
+                  </select>
+                </div>
+              </div>
+              <div class="booking-list" id="booking-list" aria-live="polite"></div>
+              <p class="menu-empty" id="booking-empty" hidden></p>
+              <button type="button" class="btn btn-outline-danger btn-sm mt-3" id="booking-clear">Delete all bookings</button>
+            </div>
+
+            <aside class="col-lg-4">
+              <div class="stats-panel">
+                <h3 class="h5">Booking statistics</h3>
+                <dl class="stats-grid">
+                  <div><dt>Bookings</dt><dd id="stat-total">0</dd></div>
+                  <div><dt>Upcoming</dt><dd id="stat-upcoming">0</dd></div>
+                  <div><dt>Guests</dt><dd id="stat-guests">0</dd></div>
+                  <div><dt>Avg. party</dt><dd id="stat-average">0</dd></div>
+                </dl>
+                <p class="stats-next">Next visit: <strong id="stat-next">&mdash;</strong></p>
+                <h4 class="h6 mt-3">Guests per time slot</h4>
+                <canvas class="slot-chart" id="slot-chart" role="img" aria-label="Guests per time slot"></canvas>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
       <section class="section section-white">
         <div class="container">
           <div class="row align-items-end g-3 mb-4">
@@ -362,6 +425,7 @@
               <li><a href="about.html">About us</a></li>
               <li><a href="menu.html">Menu &amp; packages</a></li>
               <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="recipes.html">Recipe ideas</a></li>
               <li><a href="reservation.html">Reservation</a></li>
               <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -405,7 +469,10 @@
 
     <script src="vendor/jquery/jquery-3.7.1.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/storage.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/models.js"></script>
+    <script src="js/bookings.js"></script>
     <script src="js/reservation.js"></script>
   </body>
 </html>
