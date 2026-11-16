@@ -110,14 +110,18 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    const name = document.getElementById("guest-name").value.trim();
-    const date = document.getElementById("booking-date").value;
-    const time = document.getElementById("booking-time").value;
-    const guests = document.getElementById("booking-guests").value;
+    const result = saveBookingFromForm();
+    const booking = result.booking;
 
-    success.innerHTML =
-      "<strong>Thank you, " + name + "!</strong> Your table for " + guests +
-      " on " + date + " at " + time + " is requested. We will call you within 30 minutes to confirm.";
+    success.textContent = "";
+    const strong = document.createElement("strong");
+    strong.textContent = result.mode === "updated" ? "Booking updated. " : "Thank you, " + booking.name + "! ";
+    success.append(
+      strong,
+      "Table for " + booking.guests + " on " + booking.formatWhen() +
+        (result.mode === "updated" ? " is saved." : " is requested. We will call you within 30 minutes to confirm.") +
+        " You can see it under \u201CMy bookings\u201D below."
+    );
     success.hidden = false;
     success.scrollIntoView({ behavior: "smooth", block: "center" });
 
@@ -126,6 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   form.addEventListener("reset", function () {
+    if (typeof stopEditing === "function") stopEditing();
     form.querySelectorAll(".is-invalid, .is-valid").forEach((el) => el.classList.remove("is-invalid", "is-valid"));
   });
 });
