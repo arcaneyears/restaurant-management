@@ -62,8 +62,52 @@ function showOpenStatus() {
   topbar.prepend(badge);
 }
 
+const FONT_STEPS = [90, 100, 112.5];
+
+function applyFontStep(step) {
+  const safeStep = FONT_STEPS[step] ? step : 1;
+  document.documentElement.style.fontSize = FONT_STEPS[safeStep] + "%";
+  document.querySelectorAll(".font-btn").forEach(function (button) {
+    button.setAttribute("aria-pressed", Number(button.dataset.step) === safeStep ? "true" : "false");
+  });
+  return safeStep;
+}
+
+function createFontControls() {
+  const topbar = document.querySelector(".topbar-inner");
+  if (!topbar || typeof appStore === "undefined") return;
+
+  const group = document.createElement("div");
+  group.className = "topbar-item font-controls";
+  group.setAttribute("role", "group");
+  group.setAttribute("aria-label", "Text size");
+
+  const labels = ["A\u2212", "A", "A+"];
+  const names = ["Smaller text", "Normal text", "Larger text"];
+  labels.forEach(function (label, step) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "font-btn";
+    button.dataset.step = step;
+    button.textContent = label;
+    button.setAttribute("aria-label", names[step]);
+    group.appendChild(button);
+  });
+  topbar.appendChild(group);
+
+  group.addEventListener("click", function (event) {
+    const button = event.target.closest(".font-btn");
+    if (!button) return;
+    const step = applyFontStep(Number(button.dataset.step));
+    appStore.set("font-step", step);
+  });
+
+  applyFontStep(appStore.get("font-step", 1, Number.isInteger));
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   createThemeToggle();
+  createFontControls();
   applyTheme(readSetting("saffron-theme", "light"));
   showOpenStatus();
 
