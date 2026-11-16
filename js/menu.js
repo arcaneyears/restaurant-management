@@ -2,23 +2,18 @@ const menuState = {
   category: "all",
   search: "",
   sort: "default",
-  favourites: loadFavourites(),
-  order: []
+  favourites: loadFavourites()
 };
 
+const order = new Order(appStore, menuItems);
+
 function loadFavourites() {
-  try {
-    return JSON.parse(localStorage.getItem("saffron-favourites")) || [];
-  } catch (error) {
-    return [];
-  }
+  const saved = appStore.get("favourites", [], Array.isArray);
+  return saved.filter((id) => menuItems.some((dish) => dish.id === id));
 }
 
 function saveFavourites() {
-  try {
-    localStorage.setItem("saffron-favourites", JSON.stringify(menuState.favourites));
-  } catch (error) {
-  }
+  appStore.set("favourites", menuState.favourites);
 }
 
 function getVisibleDishes(items, state) {
@@ -89,48 +84,28 @@ function renderCategoryButtons() {
   });
 }
 
-function calculateTotal(order) {
-  let total = 0;
-  for (let i = 0; i < order.length; i++) {
-    const dish = menuItems.find((d) => d.id === order[i].id);
-    total += dish.price * order[i].qty;
-  }
-  return total;
-}
-
-function addToOrder(id) {
-  const line = menuState.order.find((item) => item.id === id);
-  if (line) {
-    line.qty += 1;
-  } else {
-    menuState.order.push({ id: id, qty: 1 });
-  }
-  renderOrder();
-}
-
-function removeFromOrder(id) {
-  menuState.order = menuState.order.filter((item) => item.id !== id);
-  renderOrder();
-}
-
 function renderOrder() {
   const list = document.getElementById("order-list");
   list.innerHTML = "";
 
-  menuState.order.forEach(function (line) {
-    const dish = menuItems.find((d) => d.id === line.id);
+  order.items.forEach(function (line) {
+    const dish = order.findDish(line.id);
     const li = document.createElement("li");
     li.className = "order-line";
     li.innerHTML = `
-      <span>${dish.name} <small>&times; ${line.qty}</small></span>
-      <span>${formatPrice(dish.price * line.qty)}
-        <button type="button" class="remove-btn" data-id="${dish.id}" aria-label="Remove ${dish.name}">&times;</button>
+      <span>${dish.name}</span>
+      <span class="order-qty">
+        <button type="button" class="qty-btn" data-action="decrease" data-id="${dish.id}" aria-label="One less ${dish.name}">&minus;</button>
+        <strong>${line.qty}</strong>
+        <button type="button" class="qty-btn" data-action="increase" data-id="${dish.id}" aria-label="One more ${dish.name}">+</button>
+        <span class="order-sum">${formatPrice(dish.price * line.qty)}</span>
+        <button type="button" class="remove-btn" data-action="remove" data-id="${dish.id}" aria-label="Remove ${dish.name}">&times;</button>
       </span>`;
     list.appendChild(li);
   });
 
-  const count = menuState.order.reduce((sum, line) => sum + line.qty, 0);
-  document.getElementById("order-total").textContent = formatPrice(calculateTotal(menuState.order));
+  const count = order.count();
+  document.getElementById("order-total").textContent = formatPrice(order.total());
   document.getElementById("order-count").textContent = count;
   document.getElementById("order-empty").hidden = count > 0;
   document.getElementById("order-clear").disabled = count === 0;
@@ -176,20 +151,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (event.target.classList.contains("add-btn")) {
-      addToOrder(id);
+      order.add(id);
+      renderOrder();
       event.target.textContent = "Added ✓";
       setTimeout(() => (event.target.textContent = "Add to order"), 900);
     }
   });
 
   document.getElementById("order-list").addEventListener("click", function (event) {
-    if (event.target.classList.contains("remove-btn")) {
-      removeFromOrder(Number(event.target.dataset.id));
-    }
+    const button = event.target.closest("button[data-action]");
+    if (!button) return;
+    const id = Number(button.dataset.id);
+    if (button.dataset.action === "increase") order.add(id);
+    if (button.dataset.action === "decrease") order.decrease(id);
+    if (button.dataset.action === "remove") order.remove(id);
+    renderOrder();
   });
 
   document.getElementById("order-clear").addEventListener("click", function () {
-    menuState.order = [];
+    order.clear();
     renderOrder();
   });
 
